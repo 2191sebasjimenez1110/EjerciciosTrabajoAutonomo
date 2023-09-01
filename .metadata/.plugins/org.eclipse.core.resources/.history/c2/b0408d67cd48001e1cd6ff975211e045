@@ -1,0 +1,8 @@
+import javax.swing.JOptionPane;
+
+public class nombre {
+    public void nom(){
+        JOptionPane.showMessageDialog(null, "metodo sin retorno y sin parametros");
+        JOptionPane.showMessageDialog(null, "Valentina");
+    }
+}

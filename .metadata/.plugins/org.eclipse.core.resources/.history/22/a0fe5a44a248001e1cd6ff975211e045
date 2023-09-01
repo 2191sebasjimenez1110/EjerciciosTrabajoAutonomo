@@ -1,0 +1,115 @@
+import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
+public class ListaAlumnos {
+	/*
+	 Crea un programa que permita a un profesor registrar las notas de sus estudiantes.
+	 Utiliza un HashMap donde las claves sean los nombres de los estudiantes y los valores sean las notas 
+	 correspondientes. El programa debe permitir al profesor agregar estudiantes y 
+	 asignar sus notas, así como también consultar la nota de un estudiante específico.
+	 */
+	String menu, opc, nombre, lista;
+	Double nota;
+	Integer count = 0;
+	HashMap<String, Double> listaNotas = new HashMap<String, Double>();
+	public void iniciar() {
+		menu();
+	}
+	
+	public void menu() {
+		do {
+			menu = "------- Menu Principal ------";
+			menu += "\n1.Ingresar Alumnos y Asignar Notas";
+			menu += "\n2. Imprimir Lista Alumnos";
+			menu += "\n3.Consultar Notas";
+			menu += "\n4.Eliminar Estudiante";
+			menu += "\n5.Salir";
+			menu += "\nIngrese una opcion";	
+			opc = JOptionPane.showInputDialog(menu);
+			acciones(opc);
+		} while (!opc.equals("5"));
+		
+	}
+
+	private void acciones(String opcion) {
+		switch (opcion) {
+		case "1":
+			menu = "desea añadir a otro alumno con su respectiva nota";
+			menu += "\n1. Si";
+			menu += "\n2. No";
+			menu += "\nINgrese una opcion";
+			do {
+				nombre = JOptionPane.showInputDialog("ingrese el nombre del alumno");
+				nota = Double.parseDouble(JOptionPane.showInputDialog("ingrese la nota del alumno: " + nombre));
+				ingresoAlumno(listaNotas, nombre);
+				opc = JOptionPane.showInputDialog(menu);
+			} while (!opc.equals("2"));
+			count = 1;
+			break;
+		case "2":if (count >0) {
+				lista = "-------- lista Alumnos ---------";
+				imprimirLista(listaNotas);
+			}else {
+				System.out.println("Tiene que ingresar un alumno antes de realizar cuanlquier accion "
+						+ "en el programa");
+			}
+			break;
+		case "3":if (count >0) {
+				nombre = JOptionPane.showInputDialog("ingrese al alumno que desea consultar la nota");
+				consultarAlumno(listaNotas, nombre);
+			}else {
+				System.out.println("Tiene que ingresar un alumno antes de realizar cuanlquier accion "
+						+ "en el programa");
+			}
+			break;
+		case "4":if (count >0) {
+				nombre = JOptionPane.showInputDialog("ingrese el alumno que desea eliminar de la lista");
+				eliminarAlumno(listaNotas, nombre);
+			}else {
+				System.out.println("Tiene que ingresar un alumno antes de realizar cuanlquier accion "
+						+ "en el programa");
+			}
+			break;
+		case "5": break;
+		default:
+			System.out.println("ingrese una opcion valida");
+			break;
+		}
+		
+	}
+	
+	private void imprimirLista(HashMap<String, Double> listaNotas) {
+		Iterator<String> iterador = listaNotas.keySet().iterator();
+		
+		while (iterador.hasNext()) {
+			String llave = (String) iterador.next();
+			
+		}
+	}
+
+	public void ingresoAlumno(HashMap<String, Double> listaNotas,String alumno){
+		listaNotas.put(nombre, nota);
+		System.out.println("ingreso de alumno exitoso");
+	}
+		
+	public void eliminarAlumno(HashMap<String, Double> listaNotas,String alumno){
+		listaNotas.remove(alumno);
+		System.out.println("elimino de la lista con exito al alumno");
+	}
+		
+	public void consultarAlumno(HashMap<String, Double> listaNotas,String alumno){
+		if (listaNotas.containsKey(alumno)) {
+				System.out.println("el estudiante: " + alumno + " nota: " + listaNotas.get(alumno));
+		}else {
+			System.out.println("El estudiante" + alumno + " no se encontro, ingrese al estudiante o "
+					+ "verifique cual es el estudiantre que quiere ingresar");
+		}		
+					
+	}
+	
+	
+	
+	
+}

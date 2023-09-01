@@ -1,0 +1,11 @@
+package ejercicio6;
+
+public class SumaArreglos {
+	int suma = 0;
+	public int sumarArreglos(int[] arreglo1, int[] arreglo2) {
+		for (int i = 0; i < arreglo2.length; i++) {
+			suma += arreglo1[i]+arreglo2[i];
+		}
+		return suma;
+	}
+}
